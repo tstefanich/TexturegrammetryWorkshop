@@ -26,7 +26,7 @@ void setup() {
   // Load Screenshot to break into pieces.
   // Just replace screenshot.png with your 
   // image of choice
-  tilesheet = loadImage("screenshot.png");
+  tilesheet = loadImage(sketchPath() +"/image-source/screenshot.png");
   
   // Resize Tilesheet to "zoom" in or "zoom" out 
   tilesheet.resize(floor(tilesheet.width * resizeAmount), floor(tilesheet.height * resizeAmount));
@@ -101,13 +101,20 @@ ArrayList<File> listFilesRecursive(String dir) {
 // Recursive function to traverse subdirectories
 void recurseDir(ArrayList<File> a, String dir) {
   File file = new File(dir);
-  if (file.isDirectory()) {
-    // If you want to include directories in the list
-    a.add(file);  
-    File[] subfiles = file.listFiles();
-    for (int i = 0; i < subfiles.length; i++) {
-      // Call this function on all files in this directory
-      recurseDir(a,subfiles[i].getAbsolutePath());
+ 
+  if (file.isDirectory() && file.getName() != "colormap") {
+    
+    //This conditional is for ignoring the colormap folder
+    if(file.getName().equals("colormap") == true){
+      println("ignore");
+    } else {
+      // If you want to include directories in the list
+      a.add(file);
+      File[] subfiles = file.listFiles();
+      for (int i = 0; i < subfiles.length; i++) {
+        // Call this function on all files in this directory
+        recurseDir(a,subfiles[i].getAbsolutePath());
+      }
     }
   } else {
     a.add(file);
