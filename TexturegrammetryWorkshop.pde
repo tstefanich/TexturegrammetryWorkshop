@@ -23,14 +23,16 @@ void setup() {
   // Set Processing Window Size
   size(128,128);
   
-  // Load Screenshot to break into pieces
+  // Load Screenshot to break into pieces.
+  // Just replace screenshot.png with your 
+  // image of choice
   tilesheet = loadImage("screenshot.png");
   
   // Resize Tilesheet to "zoom" in or "zoom" out 
   tilesheet.resize(floor(tilesheet.width * resizeAmount), floor(tilesheet.height * resizeAmount));
   
   // Path + folder name of theme
-  String path = sketchPath() + "/minecraft-default-texture-from-1.9" ;
+  String path = sketchPath() + "/your-minecraft-texture-from-1.9" ;
 
   String[] filenames = listFileNames(path);
   //println("Listing all filenames in a directory: ");
